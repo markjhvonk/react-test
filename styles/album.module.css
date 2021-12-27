@@ -1,0 +1,50 @@
+.AlbumWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #000;
+    transition: all .3s ease;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50%;
+    cursor: pointer;
+}
+
+.AlbumWrapper:hover {
+    transform: perspective(1800px) rotateY(45deg);
+}
+
+.AlbumImage {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: all .3s ease;    
+    transform:  translate3d(0, 0, 0);
+}
+
+.AlbumSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    background-color: #000000;
+    transition: all .3s ease;
+    transform: rotateY(-90deg) translate3d(-20px, 0, 20px);
+}
+
+.AlbumText {
+    width: auto;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    transform: rotate(90deg);
+    white-space: nowrap;
+}
+
+.AlbumText:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
