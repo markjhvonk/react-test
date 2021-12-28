@@ -5,7 +5,8 @@ import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAlbums, selectAlbums } from '../redux/slices/lastfm/albumsSlice';
 
-import AlbumsList from '../components/albumsList';
+import Layout from '../components/layout'
+import AlbumsList from '../components/albumList';
 
 import styles from '../styles/Home.module.css';
 
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto">
+      <Layout>
         <h1 className="text-2xl">Albums for {selectedArtist}</h1>
 
         {albums &&
@@ -36,7 +37,7 @@ const Home: NextPage = () => {
             <AlbumsList albums={albums}/>
           </>
         }
-      </main>
+      </Layout>
     </div>
   )
 }

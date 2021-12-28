@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // @ts-ignore
 import EllipsisText from "react-ellipsis-text";
 
-import styles from '../styles/album.module.css';
+import styles from './album.module.css';
 
 interface AlbumTypes {
     name: string;
@@ -21,10 +20,6 @@ function Album({ name, image, playcount }: AlbumTypes) {
             </div>
         </div>
     );
-}
-
-Album.propTypes = {
-    albumData: PropTypes.object
 }
 
 export default Album;

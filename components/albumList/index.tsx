@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Album from './album';
+import Album from '../album';
 
-import styles from '../styles/albumList.module.css';
+import styles from './albumList.module.css';
 
 function AlbumsList(props: any) {
     const albums = props.albums;
