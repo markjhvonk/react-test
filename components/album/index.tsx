@@ -1,24 +1,28 @@
 import React from 'react';
 // @ts-ignore
 import EllipsisText from "react-ellipsis-text";
+import Link from 'next/link'
 
 import styles from './album.module.css';
 
 interface AlbumTypes {
     name: string;
+    artist: string;
     image: string;
     playcount: number;
 }
 
-function Album({ name, image, playcount }: AlbumTypes) {
+function Album({ name, artist, image, playcount }: AlbumTypes) {
     return (
-        <div className={styles.AlbumWrapper}>
-            <img className={styles.AlbumImage} src={image}/>
-            <div className={styles.AlbumSide}>
-                <EllipsisText text={name} length={"35"} className={styles.AlbumText} />
-                <div className={styles.AlbumText}>{playcount}</div>
+        <Link className={styles.AlbumWrapper} href={`/album/${name}?artist=${artist}`}>
+            <div className={styles.AlbumWrapper}>
+                <img className={styles.AlbumImage} src={image}/>
+                <div className={styles.AlbumSide}>
+                    <EllipsisText text={name} length={"35"} className={styles.AlbumText} />
+                    <div className={styles.AlbumText}>{playcount}</div>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

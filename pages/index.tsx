@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import type { NextPage } from 'next';
+//@ts-ignore
+import type { NextPage } from 'next/app'; 
 import Head from 'next/head';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,8 +8,6 @@ import { fetchAlbums, selectAlbums } from '../redux/slices/lastfm/albumsSlice';
 
 import Layout from '../components/layout'
 import AlbumsList from '../components/albumList';
-
-import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const { albums } = useSelector(selectAlbums);
@@ -22,7 +21,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Albums App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -32,13 +31,10 @@ const Home: NextPage = () => {
         <h1 className="text-2xl">Albums for {selectedArtist}</h1>
 
         {albums &&
-          <>
-            <h5>Test albums! {albums.length}</h5>
-            <AlbumsList albums={albums}/>
-          </>
+          <AlbumsList albums={albums}/>
         }
       </Layout>
-    </div>
+    </>
   )
 }
 

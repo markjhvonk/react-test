@@ -10,7 +10,12 @@ function AlbumsList(props: any) {
     return (
         <div className={styles.AlbumList}>
             {albums.map((album: any) => {
-                return <Album name={album.name} image={album.image[3]['#text']} playcount={album.playcount}/>
+                return <Album 
+                    key={album.name}
+                    name={album.name}
+                    artist={album.artist.name}
+                    image={album.image[3]['#text']}
+                    playcount={album.playcount}/>
             })}
         </div>
     );
