@@ -13,22 +13,11 @@
 .position {
     text-align: center;
 }
-.name {
 
-}
 .artist, .album {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-.artist {
-
-}
-.album {
-
-}
-.duration {
-
 }
 
 .favoriteButton {
@@ -42,10 +31,10 @@
 .favoriteButton:hover {
     stroke: #FFD764;
     stroke-width: 2;
-    /* fill: #FFD764; */
 }
 
 .favoriteButtonActive {
+    cursor: pointer;
     stroke: #FFD764;
     fill: #FFD764;
 }
