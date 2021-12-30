@@ -1,6 +1,6 @@
 ## Setup
 
-AFter cloning the repo run:
+After cloning the repo run:
 ```bash
 npm install
 ```
