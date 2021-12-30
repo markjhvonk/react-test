@@ -9,9 +9,13 @@ function TrackList(props: any) {
 
     return (
         <div className={styles.trackList}>
-            {Array.isArray(tracks) && tracks.map((track: any) => {
-                return <Track key={track.id} track={track} album={album} />
-            })}
+            {Array.isArray(tracks) ? 
+                tracks.map((track: any) => {
+                    return <Track key={track.id} track={track} album={album} />
+                })
+                :
+                <span>Something went wrong displaying the tracks...</span>
+            }
         </div>
     );
 }
