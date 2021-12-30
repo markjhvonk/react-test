@@ -23,7 +23,7 @@ const StyledField = styled.input`
   border-radius: 4px;
   min-width: 150px;
   padding: 8px;
-  margin: 8px 16px;
+  margin: 0 16px;
   border: 2px solid #fff;
   background: transparent;
   color: #fff;
@@ -68,7 +68,7 @@ const StyledDropdownItem = styled.li`
 
 function SearchField({ dropdownData, inputCallback, itemCallback}: SearchFieldTypes) {
   const [inputValue, setInputValue] = React.useState("");
-  const setDebounce = useRef(debounce( (value: string) => { if(inputCallback) inputCallback(value)}, 200));
+  const setDebounce = useRef(debounce( (value: string) => { if(inputCallback) inputCallback(value)}, 500));
 
   const handleInputChange = (event: any) => {
     setInputValue(event.target.value);

@@ -16,16 +16,17 @@ import styles from './albumDetails.module.css';
 const Album: NextPage = () => {
     const router = useRouter();
     const dispatch = useDispatch();
+
     const { albumDetails } = useSelector(selectAlbumDetails);
     const { status } = albumDetails;
     const album = albumDetails.albumDetails;
     dispatch(selectAlbumDetails);
 
     const loading = status === 'loading';
-    let hasAlbumCover = undefined;
-    if (album) {
-        hasAlbumCover = album.image[album.image.length - 1]['#text'] !== '' ? true : false;
-    }
+
+    let hasAlbumCover: boolean = false;
+    // Prepare album image or placeholder
+    if (album) hasAlbumCover = album.image[album.image.length - 1]['#text'] !== '' ? true : false;
     
     useEffect(() => {
         if (!router.isReady) return;

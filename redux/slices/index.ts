@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
+// Import reducers
 import { favoritesSlice } from './favorites/favoritesSlice';
 import { albumsSlice } from './lastfm/albumsSlice';
 import { albumDetailsSlice } from './lastfm/albumDetailsSlice';

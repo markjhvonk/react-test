@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArtists, selectArtists, clearState } from '../../redux/slices/lastfm/artistsSlice';
+import { fetchArtists, selectArtists } from '../../redux/slices/lastfm/artistsSlice';
 
 import {SearchField} from '../inputs';
 
@@ -12,42 +12,33 @@ interface artistObject {
 function SearchArtists() {
     const dispatch = useDispatch();
     const { artists } = useSelector(selectArtists);
-    // const fetchedArtists = artists.artists;
     dispatch(selectArtists);
     const [fetchedArtists, setFetchedArtists] = useState<Array<any>>([]);
 
-    console.log(fetchedArtists)
-
-    useEffect(() => {
-        console.log('artists changed', artists)
-        // console.log('test', query)
-        if (artists.artists !== fetchedArtists) {
-            setFetchedArtists(artists.artists);
-        } else {
-            setFetchedArtists([]);
-        }
-        // setFetchedArtists()
-        // Fetch albums if a new artist was detected
-        // if (fetchedArtists !== defaultArtist) dispatch(fetchAlbums(String(selectedArtist)));
-    }, [artists.artists]);
-
     const searchArtists = (query: string) => {
-        console.log('test', query)
         if (query !== '') {
-            console.log('dispatch')
+            // Only fetch artists if query has data
             dispatch(fetchArtists({ query, limit: 10 }));
         } else {
+            // Else empty list
             setFetchedArtists([]);
-            // dispatch(clearState());
         }
     }
 
     const clickArtist = (artist: artistObject) => {
-        console.log(artist.name);
-        setFetchedArtists([]);
-        // dispatch(clearState());
-        window.location.href = `/?artist=${artist.name}`;
+        setFetchedArtists([]); // Clear list
+        window.location.href = `/?artist=${artist.name}`; // Redirect with new data
     }
+
+    useEffect(() => {
+        if (artists.artists !== fetchedArtists) {
+            // Only set artist if there is a new list
+            setFetchedArtists(artists.artists);
+        } else {
+            // Else empty list
+            setFetchedArtists([]);
+        }
+    }, [artists.artists]);
 
     return (
         <SearchField
@@ -58,7 +49,7 @@ function SearchArtists() {
 }
 
 SearchArtists.propTypes = {
-
+    //...
 }
 
 export default SearchArtists;

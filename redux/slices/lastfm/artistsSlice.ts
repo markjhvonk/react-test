@@ -36,7 +36,7 @@ export const fetchArtists = createAsyncThunk(
             let data = await response.data.results.artistmatches.artist;
             if (response.status === 200) {
                 if (data.length > 0) {
-                    // Add ids to artists because they are lacking
+                    // Add ids to artists since they are missing
                     data.map((artist: any) => {
                         artist.id = encodeURIComponent(artist.name + '+' + artist.url);
                         return artist;
