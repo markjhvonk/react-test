@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 
+interface favoriteTrack { id: number, track: object }
 interface favoriteState {
-    value: { id: number, name: string }[]
+    value: favoriteTrack[]
 }
 
 const initialState: favoriteState = {
@@ -13,17 +14,18 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState,
     reducers: {
-        add: (state) => {
-            state.value.push({id: 1, name: 'test'});
+        add: (state, action: any) => {
+            state.value.push(action.payload);
         },
-        remove: (state) => {
-            state
+        remove: (state, action) => {
+            const index = state.value.findIndex(t => t.id === action.payload);
+            state.value.splice(index, 1);
         }
     }
 });
 
 export const { add, remove } = favoritesSlice.actions;
 
-export const selectCount = (state: RootState) => state.favorites.value;
+export const selectFavorites = (state: RootState) => state.favorites;
 
 export default favoritesSlice.reducer;
