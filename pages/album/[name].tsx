@@ -25,8 +25,9 @@ const Album: NextPage = () => {
     const loading = status === 'loading';
 
     let hasAlbumCover: boolean = false;
+
     // Prepare album image or placeholder
-    if (album) hasAlbumCover = album.image[album.image.length - 1]['#text'] !== '' ? true : false;
+    if (album.image) hasAlbumCover = album.image[album.image.length - 1]['#text'] !== '' ? true : false;
     
     useEffect(() => {
         if (!router.isReady) return;
