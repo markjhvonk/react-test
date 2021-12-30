@@ -35,13 +35,15 @@
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
             "logo logo"
+            "buttons buttons"
             "middle middle"
-            "buttons buttons";
-    }
-    .middle {
-        padding: 20px 0;
+            ;
     }
     .buttons {
+        padding: 15px 0 5px;
         place-self: start;
+    }
+    .middle {
+        padding: 10px 0;
     }
 }
