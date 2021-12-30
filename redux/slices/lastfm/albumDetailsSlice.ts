@@ -21,17 +21,30 @@ const initialState: albumDetailsState = {
 
 interface responseParams {
     artist: string,
-    album: string
+    album: string,
 }
 
 export const fetchAlbumDetails = createAsyncThunk(
     'albumDetails/fetch',
-    async (data: responseParams, thunkAPI) => {
-        const {artist, album} = data;
+    async (params: responseParams, thunkAPI) => {
+        const {artist, album} = params;
         try {
-            const response = await axios.get(API_URL + '?method=album.getinfo&artist=' + artist + '&album=' + album + '&api_key=' + API_KEY + '&format=json');
+            const response = await axios.get(API_URL + '?method=album.getinfo&artist=' + encodeURIComponent(artist) + '&album=' + encodeURIComponent(album) + '&api_key=' + API_KEY + '&format=json');
             let data = await response.data.album;
             if (response.status === 200) {
+                if (data.tracks) {
+                    // Put single tracks in array
+                    if (!Array.isArray(data.tracks.track)) {
+                        const singleTrack = data.tracks.track
+                        data.tracks.track = []; 
+                        data.tracks.track.push(singleTrack);
+                    }
+                    // Add ids to tracks because they were lacking, needed for favorite functionality
+                    data.tracks.track.map((track: any) => {
+                        track.id = encodeURIComponent(track['@attr']['rank'] + '+' + track.name + '+' + data.name + '+' + track.artist.name);
+                        return track;
+                    });
+                }
                 return data;
             } else {
                 return thunkAPI.rejectWithValue(data);
@@ -75,4 +88,4 @@ export const albumDetailsSlice = createSlice({
 })
 
 export const { clearState } = albumDetailsSlice.actions;
-export const selectAlbumDetails = (state: any) => state.albumDetails;
+export const selectAlbumDetails = (state: any) => { return { albumDetails: state.albumDetails, status: state.status}};

@@ -1,0 +1,51 @@
+.track {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr 2fr 1fr 1fr;
+    column-gap: 15px;
+    align-items: center;
+    height: 50px;
+    border-radius: 4px;
+}
+.track:hover {
+    background-color: black;
+}
+
+.position {
+    text-align: center;
+}
+.name {
+
+}
+.artist, .album {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.artist {
+
+}
+.album {
+
+}
+.duration {
+
+}
+
+.favoriteButton {
+    cursor: pointer;
+    stroke: #ffffff;
+    stroke-width: 1;
+    fill: rgba(0,0,0,0);
+    transition: all .1s ease;
+}
+
+.favoriteButton:hover {
+    stroke: #FFD764;
+    stroke-width: 2;
+    /* fill: #FFD764; */
+}
+
+.favoriteButtonActive {
+    stroke: #FFD764;
+    fill: #FFD764;
+}

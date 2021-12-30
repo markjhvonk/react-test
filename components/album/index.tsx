@@ -14,11 +14,11 @@ interface AlbumTypes {
 
 function Album({ name, artist, image, playcount }: AlbumTypes) {
     return (
-        <Link className={styles.AlbumWrapper} href={`/album/${name}?artist=${artist}`}>
+        <Link href={`/album/${encodeURIComponent(name)}?artist=${encodeURIComponent(artist)}`}>
             <div className={styles.AlbumWrapper}>
                 <img className={styles.AlbumImage} src={image}/>
                 <div className={styles.AlbumSide}>
-                    <EllipsisText text={name} length={"35"} className={styles.AlbumText} />
+                    <EllipsisText text={name} length={30} className={styles.AlbumText} />
                     <div className={styles.AlbumText}>{playcount}</div>
                 </div>
             </div>
