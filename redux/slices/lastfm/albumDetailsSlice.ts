@@ -41,7 +41,7 @@ export const fetchAlbumDetails = createAsyncThunk(
                     }
                     // Add ids to tracks because they were lacking, needed for favorite functionality
                     data.tracks.track.map((track: any) => {
-                        track.id = encodeURIComponent(track['@attr']['rank'] + '+' + track.name + '+' + data.name + '+' + track.artist.name);
+                        track.id = encodeURIComponent(track.name + '+' + track.artist);
                         return track;
                     });
                 }

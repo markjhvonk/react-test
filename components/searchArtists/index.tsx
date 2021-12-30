@@ -44,7 +44,8 @@ function SearchArtists() {
         <SearchField
             inputCallback={(input: string) => { searchArtists(input) }}
             itemCallback={clickArtist}
-            dropdownData={fetchedArtists} />
+            dropdownData={fetchedArtists}
+            placeholder="Search for artists" />
     );
 }
 

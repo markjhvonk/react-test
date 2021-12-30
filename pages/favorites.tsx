@@ -8,6 +8,14 @@ import { selectFavorites } from '../redux/slices/favorites/favoritesSlice';
 
 import Layout from '../components/layout';
 import TrackList from '../components/trackList';
+import SearchTracks from '../components/searchTracks';
+import styled from 'styled-components';
+
+const FavoriteHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
 
 const Favorites: NextPage = () => {
 
@@ -18,7 +26,8 @@ const Favorites: NextPage = () => {
     useEffect(() => {
         dispatch(selectFavorites);
     }, []);
-
+    
+    console.log(favoriteTracks)
     return (
         <>
             <Head>
@@ -29,7 +38,10 @@ const Favorites: NextPage = () => {
             <Layout>
                 {favoriteTracks &&
                     <>
-                        <h1>Favorites</h1>
+                        <FavoriteHeader>
+                            <h1>Favorites</h1>
+                            <SearchTracks />
+                        </FavoriteHeader>
                         <TrackList tracks={favoriteTracks} album={''} />
                     </>
                 }

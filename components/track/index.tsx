@@ -17,11 +17,11 @@ function Track(props: any) {
 
     return (
         <div className={styles.track}>
-            <div className={styles.position}>{track['@attr']['rank']}</div>
+            <div className={styles.position}>{track['@attr'] ? track['@attr']['rank'] : null}</div>
             <div className={styles.name}>{track.name}</div>
-            <div className={styles.artist}>{track.artist.name}</div>
+            <div className={styles.artist}>{track.artist.name ? track.artist.name : track.artist}</div>
             <div className={styles.album}>{album}</div>
-            <div className={styles.duration}>{durationToMinutes(track.duration)}</div>
+            <div className={styles.duration}>{track.duration ? durationToMinutes(track.duration) : null}</div>
             <div className={styles.favoriteBtn}>
                 <FavoriteButton track={track}/>
             </div>

@@ -5,11 +5,13 @@ import { debounce } from 'lodash';
 interface DropdownDataTypes {
   name: string;
   id: string;
+  artist: string;
 }
 interface SearchFieldTypes {
-  dropdownData?: Array<DropdownDataTypes>,
-  inputCallback?: Function,
-  itemCallback?: Function
+  dropdownData?: Array<DropdownDataTypes>;
+  inputCallback?: Function;
+  itemCallback?: Function;
+  placeholder?: string;
 }
 
 const StyledWrapper = styled.div`
@@ -37,9 +39,9 @@ const StyledDropdown = styled.ul`
   list-style-type: none;
   position: relative;
   bottom: 0;
-  left: 20px;
+  left: 15px;
   z-index: 99;
-  max-width: 300px;
+  max-width: 500px;
   margin: 0;
   padding: 0;
   border-radius: 4px;
@@ -50,11 +52,12 @@ const StyledDropdown = styled.ul`
 `
 
 const StyledDropdownItem = styled.li`
+  position: relative;
   height: 40px;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  padding: 10px;
+  padding: 10px 30px 10px 10px;
   border-bottom: 2px solid #fff;
   &:last-child {
     border-bottom: 0;
@@ -63,13 +66,16 @@ const StyledDropdownItem = styled.li`
     font-weight: bold;
     &::after {
       content: '▷';
+      position: absolute;
+      top: 7px;
+      right: 7px;
       text-decoration: none;
     }
   }
 `
 
 
-function SearchField({ dropdownData, inputCallback, itemCallback}: SearchFieldTypes) {
+function SearchField({ dropdownData, inputCallback, itemCallback, placeholder}: SearchFieldTypes) {
   const [inputValue, setInputValue] = React.useState("");
   const setDebounce = useRef(debounce( (value: string) => { if(inputCallback) inputCallback(value)}, 500));
 
@@ -84,10 +90,13 @@ function SearchField({ dropdownData, inputCallback, itemCallback}: SearchFieldTy
 
   return (
     <StyledWrapper>
-      <StyledField type="text" value={inputValue} onChange={handleInputChange} placeholder='Search for Artist' />
+      <StyledField type="text" value={inputValue} onChange={handleInputChange} placeholder={placeholder ? placeholder : ''} />
       {(dropdownData && dropdownData.length > 0) &&
         <StyledDropdown>
-          {dropdownData?.map((item) => <StyledDropdownItem key={item.id} onClick={() => {itemClick(item)}}>{item.name}</StyledDropdownItem>)}
+          {dropdownData?.map((item) => <StyledDropdownItem key={item.id} onClick={() => { itemClick(item) }}>
+            <span>{item.name}</span>
+            {item.artist ? <span>{item.artist}</span> : ''}
+          </StyledDropdownItem>)}
         </StyledDropdown>
       }
     </StyledWrapper>
