@@ -28,6 +28,9 @@ const StyledField = styled.input`
   background: transparent;
   color: #fff;
   transition: all .1s ease;
+  @media only screen and (max-width: 600px) {
+    margin: 0 4px 0 0;
+  }
 `
 
 const StyledDropdown = styled.ul`

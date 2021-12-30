@@ -11,12 +11,29 @@
 .logo {
     font-size: 30px;
     font-weight: bold;
+    grid-area: logo;
 }
 
 .middle {
     display: flex;
+    grid-area: middle;
 }
 
 .buttons {
     place-self: end;
+    grid-area: buttons;
+}
+
+@media only screen and (max-width: 920px) {
+    .navbar {
+        grid-template-columns: 1fr 2fr 2fr;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .navbar {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "logo logo"
+            "middle buttons";
+    }
 }

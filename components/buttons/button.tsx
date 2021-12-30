@@ -22,6 +22,9 @@ const StyledButton = styled.button<{ state: boolean }>`
     background: #fff;
     color: #000
   }
+  @media only screen and (max-width: 600px) {
+    margin: 8px 4px;
+  }
 `
 
 function Button({ children, href, state }: ButtonTypes) {
