@@ -1,8 +1,6 @@
-
-
 import PropTypes from 'prop-types';
 import styles from './layout.module.css';
-
+import Navbar from '../navbar';
 
 interface LayoutTypes {
     children: any;
@@ -10,9 +8,12 @@ interface LayoutTypes {
 
 function Layout({ children }: LayoutTypes) {
     return (
-        <main className={styles.container}>
-            {children}
-        </main>
+        <>
+            <Navbar />
+            <main className={styles.container}>
+                {children}
+            </main>
+        </>
     );
 }
 

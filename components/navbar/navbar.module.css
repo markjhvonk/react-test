@@ -1,0 +1,22 @@
+.navbar {
+    height: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #131318;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.middle {
+    display: flex;
+}
+
+.buttons {
+    place-self: end;
+}

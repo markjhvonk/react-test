@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-//@ts-ignore
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 //@ts-ignore
 import type { NextPage } from 'next/app';
 import Head from 'next/head';
