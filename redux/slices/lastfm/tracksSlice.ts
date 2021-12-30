@@ -34,12 +34,8 @@ export const fetchTracks = createAsyncThunk(
         try {
             const response = await axios.get(API_URL + '?method=track.search&track=' + encodeURIComponent(query) + '&limit=' + passLimit + '&page=' + passPage + '&api_key=' + API_KEY + '&format=json');
             let data = await response.data.results.trackmatches.track;
-            console.log(data);
             if (response.status === 200) {
-                console.log(data);
                 if (data.length > 0) {
-                    console.log(data);
-                    console.log(Array.isArray(data))
                     // Put single tracks in array
                     if (!Array.isArray(data)) {
                         const singleTrack = data;
@@ -48,13 +44,10 @@ export const fetchTracks = createAsyncThunk(
                     }
                     // Add ids to tracks since they are missing
                     data.map((track: any) => {
-                        console.log(track)
                         track.id = encodeURIComponent(track.name + '+' + track.artist);
                         return track;
                     });
-                    console.log(data);
                 }
-                console.log(data);
                 return data;
             } else {
                 return thunkAPI.rejectWithValue(data);

@@ -27,7 +27,6 @@ const Favorites: NextPage = () => {
         dispatch(selectFavorites);
     }, []);
     
-    console.log(favoriteTracks)
     return (
         <>
             <Head>
