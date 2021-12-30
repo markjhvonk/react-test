@@ -3,6 +3,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
+    grid-template-areas: "logo middle buttons";
     align-items: center;
     padding: 15px 30px;
     background-color: #131318;
