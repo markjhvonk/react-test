@@ -92,7 +92,7 @@ function SearchField({ dropdownData, inputCallback, itemCallback, placeholder}: 
     <StyledWrapper>
       <StyledField type="text" value={inputValue} onChange={handleInputChange} placeholder={placeholder ? placeholder : ''} />
       {(dropdownData && dropdownData.length > 0) &&
-        <StyledDropdown>
+        <StyledDropdown role="dropdown-box">
           {dropdownData?.map((item) => <StyledDropdownItem key={item.id} onClick={() => { itemClick(item) }}>
             <span>{item.name}</span>
             {item.artist ? <span>{item.artist}</span> : ''}
