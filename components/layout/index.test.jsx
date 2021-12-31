@@ -9,7 +9,7 @@ describe('Layout', () => {
         
         render(
             <>
-            <Layout>
+            <Layout withoutNavbar={true}>
                 <div data-testid="child-test">Test</div>
             </Layout>
             </>
@@ -17,6 +17,6 @@ describe('Layout', () => {
 
         const element = screen.getByTestId('child-test');
 
-        expect(screen.getByTestId('child-test')).toBeVisible();
-    })
-})
+        expect(element).toBeVisible();
+    });
+});

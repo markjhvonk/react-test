@@ -4,12 +4,13 @@ import Navbar from '../navbar';
 
 interface LayoutTypes {
     children: any;
+    withoutNavbar: boolean;
 }
 
-function Layout({ children }: LayoutTypes) {
+function Layout({ children, withoutNavbar }: LayoutTypes) {
     return (
         <>
-            <Navbar />
+            {!withoutNavbar && <Navbar /> }
             <main className={styles.container}>
                 {children}
             </main>

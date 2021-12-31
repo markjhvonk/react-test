@@ -11,4 +11,9 @@ Run the development server:
 npm run dev
 ```
 
+Run tests with:
+```bash
+npm run test
+```
+
 Open [http://localhost:3000](http://localhost:3000) to see the app!
