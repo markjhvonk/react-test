@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router'
 import {Button} from '../buttons';
 import SearchArtists from '../searchArtists';
@@ -13,7 +14,7 @@ function Navbar({ }: NavbarTypes) {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo}>Album app</div>
+            <div className={styles.logo}><Link href="/">Album app</Link></div>
             <div className={styles.middle}>
                 <SearchArtists />
             </div>
