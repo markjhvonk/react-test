@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { debounce } from 'lodash';
 
@@ -73,11 +73,23 @@ const StyledDropdownItem = styled.li`
     }
   }
 `
+const StyledDropdownItemClose = styled(StyledDropdownItem)`
+  color: #929292;
+  &:hover {
+    &::after {
+      top: 8px;
+      right: 8px;
+      content: '🞫';
+    }
+  }
+`
 
 
 function SearchField({ dropdownData, inputCallback, itemCallback, placeholder}: SearchFieldTypes) {
   const [inputValue, setInputValue] = React.useState("");
+  const [passedDropdownData, setPassedDropdownData] = React.useState(dropdownData);
   const setDebounce = useRef(debounce( (value: string) => { if(inputCallback) inputCallback(value)}, 500));
+
 
   const handleInputChange = (event: any) => {
     setInputValue(event.target.value);
@@ -88,12 +100,21 @@ function SearchField({ dropdownData, inputCallback, itemCallback, placeholder}: 
     if (itemCallback) itemCallback(value);
   }
 
+  const closeDropdown = () => {
+    setPassedDropdownData([]);
+  }
+
+  useEffect(() => {
+    setPassedDropdownData(dropdownData);
+  }, [dropdownData]);
+
   return (
     <StyledWrapper>
       <StyledField type="text" value={inputValue} onChange={handleInputChange} placeholder={placeholder ? placeholder : ''} />
-      {(dropdownData && dropdownData.length > 0) &&
+      {(passedDropdownData && passedDropdownData.length > 0) &&
         <StyledDropdown role="dropdown-box">
-          {dropdownData?.map((item) => <StyledDropdownItem key={item.id} onClick={() => { itemClick(item) }}>
+          <StyledDropdownItemClose onClick={closeDropdown}>Close dropdown</StyledDropdownItemClose>
+          {passedDropdownData?.map((item) => <StyledDropdownItem key={item.id} onClick={() => { itemClick(item) }}>
             <span>{item.name}</span>
             {item.artist ? <span>{item.artist}</span> : ''}
           </StyledDropdownItem>)}
