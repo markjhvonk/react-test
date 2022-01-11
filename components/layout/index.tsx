@@ -4,7 +4,7 @@ import Navbar from '../navbar';
 
 interface LayoutTypes {
     children: any;
-    withoutNavbar: boolean;
+    withoutNavbar?: boolean;
 }
 
 function Layout({ children, withoutNavbar }: LayoutTypes) {
